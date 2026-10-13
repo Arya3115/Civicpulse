@@ -1,0 +1,281 @@
+import "dotenv/config";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local before seeding.");
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const complaints = [
+  // --- CRITICAL ---
+  {
+    id: `seed-${Date.now()}-1`,
+    user_id: "user-demo",
+    user_name: "Rahul Deshmukh",
+    title: "Massive sinkhole swallowing lane on Baner Road",
+    description: "A 6-foot deep sinkhole has opened up near Baner Gym Khana, swallowing the left lane entirely. Three vehicles have suffered axle damage overnight. The road base appears to have completely collapsed.",
+    latitude: 18.5601, longitude: 73.7769,
+    address: "Baner Road, Near Gym Khana, Pune",
+    category: "POTHOLE", priority: "CRITICAL", priority_score: 9.7,
+    status: "SUBMITTED", department: "Roads & Infrastructure",
+    upvote_count: 31, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-2`,
+    user_id: "user-demo",
+    user_name: "Priya Kulkarni",
+    title: "Raw sewage flooding Pimple Saudagar residential colony",
+    description: "A burst underground sewer main is pushing raw sewage into basements and onto streets across 4 lanes of Pimple Saudagar. Children are wading through it to reach school. Outbreak risk is real.",
+    latitude: 18.5960, longitude: 73.8080,
+    address: "Lane 3–6, Pimple Saudagar, Pune",
+    category: "DRAINAGE", priority: "CRITICAL", priority_score: 9.9,
+    status: "SUBMITTED", department: "Water & Sewage",
+    upvote_count: 44, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-3`,
+    user_id: "user-demo",
+    user_name: "Anil Joshi",
+    title: "Exposed live electrical wire dangling over Kharadi footpath",
+    description: "A snapped overhead cable near the Kharadi bypass is hanging at head height across the pedestrian path outside Zensar Technologies. Sparks were seen at dawn. A fatality is imminent without immediate isolation.",
+    latitude: 18.5539, longitude: 73.9414,
+    address: "Kharadi Bypass, Near Zensar Technologies, Pune",
+    category: "ELECTRICAL", priority: "CRITICAL", priority_score: 9.8,
+    status: "SUBMITTED", department: "Electrical",
+    upvote_count: 39, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-4`,
+    user_id: "user-demo",
+    user_name: "Sneha Patil",
+    title: "Collapsed bridge parapet dropping debris onto Mutha riverbank",
+    description: "A 4-metre section of the parapet on the Old Sangam Bridge has crumbled onto the walking path below. Pedestrians were nearly struck. The remaining parapet is visibly cracked and unstable.",
+    latitude: 18.5365, longitude: 73.8735,
+    address: "Old Sangam Bridge, Sangamwadi, Pune",
+    category: "OTHER", priority: "CRITICAL", priority_score: 9.5,
+    status: "IN_PROGRESS", department: "Roads & Infrastructure",
+    upvote_count: 27, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-5`,
+    user_id: "user-demo",
+    user_name: "Vikram Mane",
+    title: "Gas leak reported from underground pipeline in Camp area",
+    description: "Residents near East Street are smelling strong gas since 6 AM. A pipe joint is visibly weeping gas near the Deccan Gas meter station. The entire block has been evacuated. Fire brigade standing by.",
+    latitude: 18.5166, longitude: 73.8808,
+    address: "East Street, Camp, Pune",
+    category: "OTHER", priority: "CRITICAL", priority_score: 9.9,
+    status: "IN_PROGRESS", department: "General Administration",
+    upvote_count: 52, upvoted_by: "[]",
+  },
+
+  // --- HIGH ---
+  {
+    id: `seed-${Date.now()}-6`,
+    user_id: "user-demo",
+    user_name: "Meera Iyer",
+    title: "Overflowing transformer oil pooling on Hadapsar footpath",
+    description: "A cracked distribution transformer near Magarpatta City Gate 2 is leaking dielectric oil onto the footpath. The slick stretches 30 metres and is a severe slip and fire hazard, especially after rain.",
+    latitude: 18.5196, longitude: 73.9293,
+    address: "Gate 2, Magarpatta City, Hadapsar, Pune",
+    category: "ELECTRICAL", priority: "HIGH", priority_score: 8.4,
+    status: "SUBMITTED", department: "Electrical",
+    upvote_count: 19, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-7`,
+    user_id: "user-demo",
+    user_name: "Sameer Khan",
+    title: "Traffic signal stuck on red for 72 hours at Wakad T-junction",
+    description: "All three signal heads at the main Wakad T-junction have been locked red since Monday. Traffic police are absent. Peak-hour gridlock stretches 2 km toward Hinjawadi, causing massive IT-park delays.",
+    latitude: 18.5990, longitude: 73.7628,
+    address: "Wakad T-Junction, Wakad, Pune",
+    category: "TRAFFIC", priority: "HIGH", priority_score: 8.9,
+    status: "SUBMITTED", department: "Traffic Management",
+    upvote_count: 35, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-8`,
+    user_id: "user-demo",
+    user_name: "Ananya Bhosle",
+    title: "Decade-old banyan tree severely tilted over Karve Road",
+    description: "The roots of a giant banyan on the Karve Road flyover median have dislodged; the tree leans at 40 degrees over live traffic. One strong wind will bring it down on vehicles. Immediate felling required.",
+    latitude: 18.5012, longitude: 73.8280,
+    address: "Karve Road Flyover Median, Pune",
+    category: "OTHER", priority: "HIGH", priority_score: 8.1,
+    status: "SUBMITTED", department: "Roads & Infrastructure",
+    upvote_count: 23, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-9`,
+    user_id: "user-demo",
+    user_name: "Ravi Sharma",
+    title: "Ghost tankers dumping industrial waste into Bhosari canal nightly",
+    description: "For three consecutive nights, unmarked tanker trucks discharge dark liquid into the Bhosari irrigation canal. The water now smells of chemicals. Farmers downstream report dead fish. Police must intervene.",
+    latitude: 18.6309, longitude: 73.8397,
+    address: "Bhosari Canal Road, Bhosari, Pune",
+    category: "OTHER", priority: "HIGH", priority_score: 8.7,
+    status: "SUBMITTED", department: "General Administration",
+    upvote_count: 29, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-10`,
+    user_id: "user-demo",
+    user_name: "Deepa Wagh",
+    title: "Open trench abandoned by telecom crew for 11 days on Spine Road",
+    description: "A 1.2-metre deep, 80-metre long open trench cut by a telecom contractor on Spine Road has been abandoned with no barricades or lighting. Two motorcyclists have already fallen in at night.",
+    latitude: 18.5990, longitude: 73.7628,
+    address: "Spine Road, Wakad, Pune",
+    category: "ROAD_DAMAGE", priority: "HIGH", priority_score: 7.9,
+    status: "IN_PROGRESS", department: "Roads & Infrastructure",
+    upvote_count: 17, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-11`,
+    user_id: "user-demo",
+    user_name: "Kiran Jadhav",
+    title: "School buses blocked by enormous road crater near Undri school",
+    description: "A crater measuring 8 feet across at the sharp bend before St. Arnold School on Undri road is forcing school buses onto 3 km detours. Children are arriving 45 minutes late every day.",
+    latitude: 18.4607, longitude: 73.8762,
+    address: "Near St. Arnold School, Undri, Pune",
+    category: "POTHOLE", priority: "HIGH", priority_score: 8.6,
+    status: "SUBMITTED", department: "Roads & Infrastructure",
+    upvote_count: 41, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-12`,
+    user_id: "user-demo",
+    user_name: "Rohan Kulkarni",
+    title: "Municipal water supply in Kondhwa turned brown with foul smell",
+    description: "Tap water in Kondhwa Budruk has turned dark brown and smells of soil since Sunday. Residents who used it report stomach cramps. Testing and emergency supply tankers are urgently needed.",
+    latitude: 18.4607, longitude: 73.8762,
+    address: "Kondhwa Budruk, Pune",
+    category: "WATER_SUPPLY", priority: "HIGH", priority_score: 8.3,
+    status: "SUBMITTED", department: "Water & Sewage",
+    upvote_count: 33, upvoted_by: "[]",
+  },
+
+  // --- MEDIUM ---
+  {
+    id: `seed-${Date.now()}-13`,
+    user_id: "user-demo",
+    user_name: "Neha Patel",
+    title: "Food stalls blocking fire exit lane of FC Road mall",
+    description: "Seven unauthorised food carts have permanently occupied the emergency exit lane behind Westend Mall. Fire engines cannot access the lane. The fire department must enforce clearance before any incident.",
+    latitude: 18.5196, longitude: 73.8411,
+    address: "Westend Mall, FC Road, Pune",
+    category: "ENCROACHMENT", priority: "MEDIUM", priority_score: 6.2,
+    status: "SUBMITTED", department: "Urban Planning",
+    upvote_count: 12, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-14`,
+    user_id: "user-demo",
+    user_name: "Suresh Deshpande",
+    title: "Broken footpath tiles injuring elderly residents in Aundh",
+    description: "Large sections of the DP Road footpath in Aundh have cracked and tilted, exposing sharp edges. An elderly resident fractured her wrist last week. At least 200 metres of tiles need immediate replacement.",
+    latitude: 18.5587, longitude: 73.8080,
+    address: "DP Road, Aundh, Pune",
+    category: "ROAD_DAMAGE", priority: "MEDIUM", priority_score: 5.8,
+    status: "SUBMITTED", department: "Roads & Infrastructure",
+    upvote_count: 8, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-15`,
+    user_id: "user-demo",
+    user_name: "Pooja Gaikwad",
+    title: "Public toilet near Shivajinagar station padlocked for 3 weeks",
+    description: "The PMPML public toilet adjacent to Shivajinagar station has been locked for 23 days straight. Hundreds of commuters and migrant labourers have nowhere to go. Health emergency escalating daily.",
+    latitude: 18.5308, longitude: 73.8474,
+    address: "Near Shivajinagar Railway Station, Pune",
+    category: "SANITATION", priority: "MEDIUM", priority_score: 5.5,
+    status: "SUBMITTED", department: "Health & Sanitation",
+    upvote_count: 14, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-16`,
+    user_id: "user-demo",
+    user_name: "Amit Joshi",
+    title: "Unlit illegal hoarding blocking sightline at Baner–Balewadi junction",
+    description: "A newly erected hoarding on the left at the Baner–Balewadi junction completely blocks the view of oncoming traffic. Three near-misses in one week. The structure has no NOC or lighting.",
+    latitude: 18.5679, longitude: 73.7740,
+    address: "Baner–Balewadi Junction, Pune",
+    category: "TRAFFIC", priority: "MEDIUM", priority_score: 5.3,
+    status: "SUBMITTED", department: "Traffic Management",
+    upvote_count: 9, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-17`,
+    user_id: "user-demo",
+    user_name: "Sunita More",
+    title: "Blocked storm drain flooding Ambegaon Pathar main road each rain",
+    description: "The storm drain on Ambegaon Pathar main road is clogged with construction debris. Even a 20-minute shower now floods the road knee-deep. Six shops have suffered water damage this monsoon.",
+    latitude: 18.4762, longitude: 73.8411,
+    address: "Ambegaon Pathar Main Road, Pune",
+    category: "DRAINAGE", priority: "MEDIUM", priority_score: 6.0,
+    status: "IN_PROGRESS", department: "Water & Sewage",
+    upvote_count: 16, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-18`,
+    user_id: "user-demo",
+    user_name: "Girish Nair",
+    title: "All benches and lights in Pashan Lake garden vandalized",
+    description: "All 12 benches in the Pashan Lake garden have been deliberately broken and lamppost wiring stripped. Families have stopped visiting after dark. Security cameras are also missing.",
+    latitude: 18.5196, longitude: 73.7900,
+    address: "Pashan Lake Garden, Pashan, Pune",
+    category: "OTHER", priority: "MEDIUM", priority_score: 4.8,
+    status: "SUBMITTED", department: "General Administration",
+    upvote_count: 6, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-19`,
+    user_id: "user-demo",
+    user_name: "Kavita Shinde",
+    title: "Developer dumped 12 truckloads of debris on protected green belt in Bopkhel",
+    description: "A developer has dumped 12 truckloads of construction rubble on the legally protected green buffer zone near Bopkhel Gaon. Trees have been smothered and the spot has become a permanent dumping magnet.",
+    latitude: 18.6309, longitude: 73.8080,
+    address: "Green Belt Zone, Bopkhel, Pune",
+    category: "ENCROACHMENT", priority: "MEDIUM", priority_score: 5.1,
+    status: "SUBMITTED", department: "Urban Planning",
+    upvote_count: 7, upvoted_by: "[]",
+  },
+  {
+    id: `seed-${Date.now()}-20`,
+    user_id: "user-demo",
+    user_name: "Mahesh Kale",
+    title: "Bulging 30-year-old retaining wall shedding bricks onto Tilak Road footpath",
+    description: "A crumbling retaining wall on Tilak Road, Sadashiv Peth has shed bricks onto the footpath twice this month. A passerby narrowly escaped. PMC must shore it up or demolish before it fully collapses.",
+    latitude: 18.5166, longitude: 73.8474,
+    address: "Tilak Road, Sadashiv Peth, Pune",
+    category: "OTHER", priority: "MEDIUM", priority_score: 5.9,
+    status: "SUBMITTED", department: "Roads & Infrastructure",
+    upvote_count: 11, upvoted_by: "[]",
+  },
+];
+async function seed() {
+  console.log("🌱 Seeding 10 demo complaints...\n");
+
+  for (const c of complaints) {
+    const { data, error } = await supabase.from("complaints").insert({
+      ...c,
+      upvoted_by: JSON.parse(c.upvoted_by),
+      created_at: c.created_at || new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString(),
+      updated_at: new Date().toISOString(),
+    });
+
+    if (error) {
+      console.error(`❌ Failed: "${c.title}" → ${error.message}`);
+    } else {
+      console.log(`✅ ${c.priority.padEnd(8)} | ${c.status.padEnd(12)} | ${c.title}`);
+    }
+  }
+
+  console.log("\n🎉 Seeding complete!");
+}
+
+seed();
